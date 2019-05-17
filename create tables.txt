@@ -1,0 +1,130 @@
+CREATE TABLE 	doctors
+(	d_id int  NOT NULL,
+	d_name varchar(80) NOT NULL,
+	qualification varchar(200),
+	specialists varchar(50),
+	experience int,
+	dfee int,
+	clinic varchar(200),
+	ratings varchar(5), 
+	PRIMARY KEY (d_id));
+
+CREATE TABLE 	patient
+(	p_id int  NOT NULL,
+	p_name varchar(50) NOT NULL, 
+	p_age int,
+	p_phoneno int,
+	p_gender char(10),
+	p_email varchar(50),
+	address varchar(200),
+	pincode int,
+	booked_bfr char(5),
+	PRIMARY KEY (p_id));
+
+CREATE TABLE 	appointment
+(
+	appno int NOT NULL,
+	app_type varchar(200),
+	problem varchar(200),
+	appd_id int NOT NULL,
+	appp_id int NOT NULL,
+	pay int,
+	PRIMARY KEY (appno),
+	FOREIGN KEY(appd_id) REFERENCES doctors(d_id),
+	FOREIGN KEY(appp_id)REFERENCES patient(p_id));
+ 	
+CREATE TABLE 	prescription
+(	pres_no int  NOT NULL,
+	p_id int NOT NULL,
+	d_id int NOT NULL,
+	health_issue varchar(50),
+	med_pres varchar(50),
+	PRIMARY KEY (pres_no),
+	FOREIGN KEY(p_id) REFERENCES patient(p_id),
+	FOREIGN KEY(d_id) REFERENCES doctors(d_id));
+
+
+CREATE TABLE 	clinic
+(	c_name varchar(200) NOT NULL,
+	c_id int NOT NULL,
+	d_id int NOT NULL,
+	c_contact int,
+	c_address varchar(200),
+	pincode int, 
+	PRIMARY KEY (c_id),
+	FOREIGN KEY(d_id) REFERENCES doctors(d_id));
+
+
+
+CREATE TABLE 	package
+(	pack_name varchar(200) NOT NULL,
+	amount int,
+	c_id int NOT NULL,
+	d_id int NOT NULL,
+	incl varchar(200), 
+	PRIMARY KEY (pack_name),
+	FOREIGN KEY(c_id) REFERENCES clinic(c_id),
+	FOREIGN KEY(d_id) REFERENCES doctors(d_id));
+
+
+CREATE TABLE 	insurance
+(
+	in_no int NOT NULL,
+	c_id int NOT NULL,
+	in_name varchar(200) NOT NULL,
+	validity int,
+	monthly_amt int NOT NULL,
+	max_amt int NOT NULL, 
+	PRIMARY KEY (in_no)
+	FOREIGN KEY(c_id) REFERENCES clinic(c_id));
+
+
+
+
+
+
+
+
+
+
+
+Insert into patient values(100,'Shivangi',19,123456789,'F','shivangiraj@gmail.com','girinagar',560085,'yes');
+Insert into patient values(101,'Aastha',20,123456567,'F','aasthamanya@gmail.com','girinagar',560085,'no');
+Insert into patient values(102,'Aishwarya',19,156456789,'F','Aishpramod@gmail.com','girinagar',560085,'yes');
+Insert into patient values(103,'Shalini',20,122345789,'F','shalini98@gmail.com','peenya',560041,'no');
+Insert into patient values(104,'Lamya',20,987136789,'F','lamyabhasin@gmail.com','koramanagala',560075,'no');
+Insert into patient values(105,'Raunak',20,867456789,'M','raunaksengupta@gmail.com','bannerghatta',560036,'yes');
+Insert into patient values(106,'Sarvesh',20,456456789,'M','sarvesh123@gmail.com','jaynagar',560017,'no');
+Insert into patient values(107,'Siddharth',20,654756789,'M','siddharthkarki@gmail.com','whitefield',560056,'yes');
+Insert into patient values(108,'Prajakta',19,126786789,'F','ptanmane@gmail.com','girinagar',560085,'yes');
+Insert into patient values(109,'Saioni',19,9996756789,'F','saioni99@gmail.com','girinagar',560085,'yes');
+Insert into patient values(110,'Britney',20,367456789,'F','britneymungra@gmail.com','jpnagar',560049,'no');
+Insert into patient values(111,'Kavya',20,768456789,'F','kavyakhatter@gmail.com','girinagar',560085,'no');
+Insert into patient values(112,'Sujeeth',20,789456789,'M','sujeeth11@gmail.com','Banashankari',560080,'yes');
+Insert into patient values(113,'Meghana',20,678456789,'F','meghanagoswami@gmail.com','girinagar',560085,'yes');
+Insert into patient values(114,'Sriya',20,987656789,'F','sriyasamptur@gmail.com','whitefield',560056,'no');
+
+
+
+
+
+
+Insert into package values('Dental Checkup Treatment',1000,200,2,'scaling/polishing,tooth extraction');
+
+
+
+Insert into clinic values('Chisel Dental',200,4,987123456,'Banashankari',560080);
+Insert into clinic values('Fortis Hospital',201,21,989123445,'Whitefield',560015);
+Insert into clinic values('Manipal',202,20,997123498'Old Airport Road',560020);
+Insert into clinic values('Dental and Orthodontal Clinic',203,15,897123234,'Hoskerhalli',560081);
+Insert into clinic values('Sunkris Dental Health Care and Implant Center',204,19,881238887,'Banashankari',560080);
+Insert into clinic values('Aastha ortho Derma centre',205,27,988123459,'Attiguppe',560075);
+Insert into clinic values('Sagar Clinic',206,33,987123666,'Girinagar',560085);
+Insert into clinic values('Manipal Hospital',207,23,700123479,'Old Airport Road',560020);
+Insert into clinic values('Fortis Hospital',208,25,801123566,'Whitefield',560015);
+Insert into clinic values('Chisel Dental',209,12,997123288,'Outer Ring Road',560082);
+Insert into clinic values('Venkat Charmalaya',210,30,777123490,'Girinagar',560085);
+Insert into clinic values('sujana skin and cosmetic clinic',212,27,809124456,'Banashankari',560080);
+Insert into clinic values('Smile Ever Dental Clinic',213,16,811123890,'Vijaynagar',560085);
+
+
